@@ -13,12 +13,16 @@ def gen_list(start: int, stop: int, parity: Parity) -> List[int]:
     what this method was supposed to do. Hey if you do, maybe you could do some good in this world by
     updating this here docstring to something useful.
 
-    :param start:
-    :param stop:
-    :param parity:
-    :return:
+    :param start: int of first value in list range (inclusive)
+    :param stop: int of last value in list range (exclusive)
+    :param parity: from enum class to determine ODD or EVEN
+    :return: list
     """
-    pass
+    if parity is Parity.ODD:
+        output = [value for value in range(start, stop) if value % 2 == 1]
+    else:
+        output = [value for value in range(start, stop) if value % 2 == 0]
+    return output
 
 
 def gen_dict(start: int, stop: int, strategy: Callable) -> Dict:
@@ -28,12 +32,13 @@ def gen_dict(start: int, stop: int, strategy: Callable) -> Dict:
     updating this here docstring to something useful.
 
 
-    :param start:
-    :param stop:
-    :param strategy:
-    :return:
+    :param start: int of first key in dict (inclusive)
+    :param stop: int of last key in dict (exclusive)
+    :param strategy: function to be applied to key to determine value
+    :return: dict
     """
-    pass
+    output = {value: strategy(value) for value in range(start, stop)}
+    return output
 
 
 def gen_set(val_in: str) -> Set:
